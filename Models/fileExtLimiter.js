@@ -6,7 +6,7 @@ const fileExtLimiter = (allowedExtArray) => {
 
         const fileExtensions = []
         Object.keys(files).forEach(key => {
-            fileExtensions.push(path.extname(files[key].nam))
+            fileExtensions.push(path.extname(files[key].name))
         })
 
         // Are the file extension allowed? 
