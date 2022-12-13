@@ -72,17 +72,17 @@ function checkToken(req,res,next){
 app.post('/auth/register', async(req,res)=>{
     const{name,email,password,confirmpassword}=req.body;
     if(!name){
-        return res.status(422).json({msg:'O nome é Obrigatório'})
+        return res.status(422).json({msg:'O nome é Obrigatorio'})
     }if(!email){
-        return res.status(422).json({msg:'O email é Obrigatório'})
+        return res.status(422).json({msg:'O email é Obrigatorio'})
     }if(!password){
-        return res.status(422).json({msg:'Senha é Obrigatória'})
+        return res.status(422).json({msg:'Senha é Obrigatoria'})
     }if(password!=confirmpassword){
         return res.status(422).json({msg:'Senhas diferentes'})
     }
     const userExists = await User.findOne({email:email})
     if(userExists){
-        return res.status(422).json({msg:'Usuario já existente'})
+        return res.status(422).json({msg:'Usuario ja existente'})
     }
     const salt=await bcrypt.genSalt(12)
     const passwordHash=await bcrypt.hash(password,salt)
