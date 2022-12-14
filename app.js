@@ -123,23 +123,8 @@ app.post("/auth/login", async(req,res)=>{
     if(!checkPassword){
         return res.status(422).json({msg:'Senha invalida'})
     }
-    try{
-        const admin=user.admin||false
-        const secret=process.env.SECRET
-        const token=jwt.sign({
-            id:user._id,
-        },
-            secret,
-        )
-        res.status(200).json({msg:'Autenticado com sucesso',token,admin})
-    }catch(err){
-        console.log(error)
-        res
-            .status(500)
-            .json({
-                msg:'Erro com o Servidor Tente mais tarde'
-            })
-    }
+    
+    
 })
 
 
