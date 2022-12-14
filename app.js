@@ -24,10 +24,8 @@ const verifyJWT = (req, res, next) => {
   
   jwt.verify(token, process.env.SECRET, function(err, decoded) {
     if (err) return res.status(400).json({ message: 'Token inválido' });
-    
     // se tudo estiver ok, salva no request para uso posterior
     req.userId = decoded.id;
-
     next();
   });
 }
@@ -38,11 +36,9 @@ const Foto = require('./Models/foto')
 
 app.use('/files', express.static('files'));
 
-
 app.get('/', (req, res)=>{
     res.status(200).json({msg:"Bem vindo!"})
 })
-
 //Private Route
 app.get("/user/:id",checkToken, async(req,res)=>{
     const id = req.params.id
@@ -99,9 +95,9 @@ app.post('/auth/register', async(req,res)=>{
     }catch(error){
         console.log(error)
         res
-            .status(500)
-            .json({
-                msg:'Erro com o Servidor Tente mais tarde'
+           .status(500)
+           .json({
+               msg:'Erro com o Servidor Tente mais tarde'
             })
     }
 })
@@ -170,14 +166,10 @@ fileSizeLimiter, async(req,res)=>{
             })
             const foto=new Foto({
                 name:files[key].name,
-
             })
             foto.save();
         })
-
-
     return res.json({ status: 'success', message: Object.keys(files).toString() })
-   
 })
 
 const dbUser=process.env.DB_USER
