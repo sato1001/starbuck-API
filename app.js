@@ -11,6 +11,7 @@ const filesPayloadExists = require('./Models/filesPayloadExists');
 const fileExtLimiter = require('./Models/fileExtLimiter');
 const fileSizeLimiter = require('./Models/fileSizeLimiter');
 const app=express()
+const cookieParser = require("cookie-parser");
 
 /* dotenv.config();
 Conectar ao Banco de Dados
@@ -18,9 +19,38 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopo
    console.log('Conectado ao Banco de Dados!')
 );*/
 
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors(corsParser));
+app.use(cookieParser());
 
+//
+export function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+export function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
+
+
+
+//
 const verifyJWT = (req, res, next) => {
   const auth = req.headers.authorization;
 
