@@ -12,11 +12,11 @@ const fileExtLimiter = require('./Models/fileExtLimiter');
 const fileSizeLimiter = require('./Models/fileSizeLimiter');
 const app=express()
 
-// dotenv.config();
-//Conectar ao Banco de Dados
-//mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true },() => 
-//    console.log('Conectado ao Banco de Dados!')
-//);
+/* dotenv.config();
+Conectar ao Banco de Dados
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true },() => 
+   console.log('Conectado ao Banco de Dados!')
+);*/
 
 app.use(express.json())
 app.use(cors())
@@ -143,6 +143,29 @@ app.post("/auth/login", async(req,res)=>{
        })
     }
 })
+/*
+export function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+export function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+*/
 
 //Upload
 app.get("/fotos", async(req,res)=>{
