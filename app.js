@@ -12,6 +12,12 @@ const fileExtLimiter = require('./Models/fileExtLimiter');
 const fileSizeLimiter = require('./Models/fileSizeLimiter');
 const app=express()
 
+// dotenv.config();
+//Conectar ao Banco de Dados
+//mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true },() => 
+//    console.log('Conectado ao Banco de Dados!')
+//);
+
 app.use(express.json())
 app.use(cors())
 
