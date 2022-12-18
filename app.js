@@ -74,11 +74,11 @@ function checkToken(req,res,next){
 app.post('/auth/register', async(req,res)=>{
     const{name,email,password,confirmpassword}=req.body;
     if(!name){
-        return res.status(422).json({msg:'O nome é Obrigatorio'})
+        return res.status(422).json({msg:'O nome é obrigatorio'})
     }if(!email){
-        return res.status(422).json({msg:'O email é Obrigatorio'})
+        return res.status(422).json({msg:'O email é obrigatorio'})
     }if(!password){
-        return res.status(422).json({msg:'Senha é Obrigatoria'})
+        return res.status(422).json({msg:'Senha é obrigatoria'})
     }if(password!=confirmpassword){
         return res.status(422).json({msg:'Senhas diferentes'})
     }
@@ -103,7 +103,7 @@ app.post('/auth/register', async(req,res)=>{
         res
            .status(500)
            .json({
-               msg:'Erro com o Servidor Tente mais tarde'
+               msg:'Erro com o servidor tente mais tarde'
             })
     }
 })
@@ -113,13 +113,13 @@ app.post("/auth/login", async(req,res)=>{
     const {email,password}=req.body
     //validações
     if(!email){
-        return res.status(422).json({msg:'O email é Obrigatório'})
+        return res.status(422).json({msg:'O email é obrigatório'})
     }if(!password){
-        return res.status(422).json({msg:'Senha é Obrigatória'})
+        return res.status(422).json({msg:'Senha é obrigatória'})
     }
     const user = await User.findOne({email:email})
     if(!user){
-        return res.status(422).json({msg:'Usuario não Encontrado'})
+        return res.status(422).json({msg:'Usuario não encontrado'})
     }
     const checkPassword=await bcrypt.compare(password, user.password)
     if(!checkPassword){
@@ -139,7 +139,7 @@ app.post("/auth/login", async(req,res)=>{
         res
            .status(500)
            .json({
-               msg:'Erro com o Servidor Tente mais tarde'
+               msg:'Erro com o servidor tente mais tarde'
        })
     }
 })
